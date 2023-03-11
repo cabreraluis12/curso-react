@@ -1,0 +1,19 @@
+
+
+
+.detailsContainer{
+    margin-top: 1px;
+    padding: 50px;
+    position: relative;
+    justify-content: space-between;
+    border-radius: 2px;
+    border-color: #009ddd;
+}
+
+.titulo{
+    text-decoration-line: underline;
+}
+
+.detailsProduct{
+    background-color: #009ddd;
+}

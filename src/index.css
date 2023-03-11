@@ -13,3 +13,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.footer{
+  display: grid;
+  justify-content: center;
+  background-color: #0f4571;
+  color: white;
+
+
+    position: absolute;
+    margin: 0;
+    width: 100%;
+}
+
+p{
+  margin: 30px;
+  align-items: center;
+}
