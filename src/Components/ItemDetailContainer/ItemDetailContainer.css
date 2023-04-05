@@ -2,8 +2,8 @@
 
 
 .detailsContainer{
-    margin-top: 1px;
-    padding: 50px;
+    margin-top: 140px;
+    padding: 100px;
     position: relative;
     justify-content: space-between;
     border-radius: 2px;
@@ -16,4 +16,5 @@
 
 .detailsProduct{
     background-color: #009ddd;
+    margin: 2rem;
 }

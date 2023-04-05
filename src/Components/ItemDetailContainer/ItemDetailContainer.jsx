@@ -1,40 +1,46 @@
 import { useParams } from "react-router-dom";
 import styles from "./ItemDetailContainer.css";
-import { products } from "../../ProductsMock";
 import ItemCount from "../ItemCount/ItemCount";
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
+import { useContext , useEffect, useState} from "react";
+import { CartContext } from "../../context/CartContext";
+import { getDoc, collection, doc } from "firebase/firestore";
+import { db } from "../../firebaseConfig";
+import { Card , AspectRatio , Typography , Chip , Box , Divider} from "@mui/joy";
+import ItemDetail from "../ItemDetail/ItemDetail";
+
+
+
 
 const ItemDetailContainer = () => {
   const { id } = useParams();
 
-  const productSelected = products.find((element) => element.id === Number(id));
+  const { agregarAlCarrito } = useContext( CartContext)
+
+  const [productSelected , setProductSelected] = useState({});
+
+  useEffect(() => {
+    const itemCollection = collection(db, "products");
+    const ref = doc(itemCollection, id);
+    getDoc(ref).then((res) => {
+      setProductSelected({
+        ...res.data(),
+        id: res.id,
+      });
+    });
+  }, [id]);
 
   const onAdd = (cantidad)=>{
-    console.log(`se agrego al carrito ${cantidad} productos `)
+
+    let producto = {
+    ...productSelected,
+    cantidad: cantidad
+    }
+    agregarAlCarrito(producto)
   }
 
   return (
-    <div className="detailsContainer">
-    <Grid
-  container
-  direction="row"
-  justifyContent="space-around"
-  alignItems="center"
->
-      <Grid item xs={6}>
-      <img src={productSelected.img} alt="" />
-      </Grid>
-      <Grid className="detailsProduct" item xs={6}>
-      <h1 className="titulo">{productSelected.titulo}</h1>
-      <h4>{productSelected.descripcion}</h4>
-      <h3>${productSelected.precio}</h3>
-      <ItemCount stock={productSelected.stock} onAdd={onAdd} />
-      </Grid>
-      
-    </Grid>
+    <div>
+    <ItemDetail productSelected={productSelected} onAdd={onAdd}/>
     </div>
   );
 };

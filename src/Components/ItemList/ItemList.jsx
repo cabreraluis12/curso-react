@@ -11,7 +11,8 @@ const ItemList = ({items}) => {
       alignItems: "center",
       flexWrap: "wrap",
       gap: "20px",
-      padding: "20px 0"
+      padding: "20px 0",
+      backgroundColor: "#d4f7dc"
   }}>
         {
             items.map((element) =>{

@@ -6,6 +6,7 @@ import Footer from "./Components/Footer/Footer";
 import ItemDetailContainer from "./Components/ItemDetailContainer/ItemDetailContainer";
 import ItemListContainer from "./Components/ItemListContainer/ItemListContainer";
 import Navbar from "./Components/Navbar/Navbar";
+import CartContexProvider from "./context/CartContext";
 
 
 
@@ -16,6 +17,7 @@ function App() {
     
 
     <BrowserRouter>
+        <CartContexProvider>
       <Navbar/>
 
       <Routes>
@@ -26,7 +28,7 @@ function App() {
         <Route path="/category/:categoryName" element={<ItemListContainer/>}/>
         
       </Routes>
-
+        </CartContexProvider>
       <Footer/> 
     </BrowserRouter>
     
